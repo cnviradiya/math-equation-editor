@@ -1,0 +1,300 @@
+<html>
+  <head>
+    <title>Mathematical Editor - By Chirag Viradiya - Full Stack Developer</title>
+    <link href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./src/style.css"/>
+    <style>
+      #euqationEditor {
+        margin: 20px;
+      }
+      #euqationHeader {
+        margin-top: 50px;
+      }
+      #euqationHeader .tab-content > div {
+        padding: 20px;
+        border: 1px solid #e2e2e2;
+      }
+      #euqationHeader .tab-content > div > ul {
+        margin: 0px;
+      }
+      .nav-tabs .nav-link {
+        bottom: -1px;
+        position: relative;
+      }
+      .list-inline-item {
+        display: unset;
+        border: 1px solid #e2e2e2;
+        line-height: 50px;
+        padding: 10px 20px;
+        background: #e3e3e3;
+        cursor: pointer;
+      }
+      .list-inline-item:hover {
+        border: 1px solid #000000;
+        background: transparent;
+      }
+      #editable-math {
+        padding: 20px 10px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12" id="euqationHeader">
+          <h3>Math Editor Demo</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" id="euqationHeader">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#menuDetail1">Symbol 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#menuDetail2">Symbol 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#menuDetail3">Symbol 3</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#menuDetail4">Symbol 4</a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div id="menuDetail1" class="container tab-pane active">
+              <ul class="list-inline"></ul>
+            </div>
+            <div id="menuDetail2" class="container tab-pane fade">
+              <ul class="list-inline"></ul>
+            </div>
+            <div id="menuDetail3" class="container tab-pane fade">
+              <ul class="list-inline"></ul>
+            </div>
+            <div id="menuDetail4" class="container tab-pane fade">
+              <ul class="list-inline"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" id="euqationHeader">
+          <h3>Output:</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 p-0" id="euqationEditor">
+          <span id="editable-math" class="mathquill-editable">\frac{d}{dx}\sqrt{x}=\frac{1}{2\sqrt{x}}</span>
+        </div>
+      </div>
+    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+    <script src="./src/raphael.js"></script>
+    <script src="./src/script.js"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      let mathButtons = [
+      	"X^2",
+      	"\\log_{x}\\y",
+      	"\\sqrt{x}",
+      	"\\nthroot{2}\{X}",
+      	"\\le",
+      	"\\ge",
+      	"\\frac{X}{Y}",
+      	"\\cdot",
+      	"\\div",
+      	"^{\\circ}",
+      	"\\pi",
+      	"\\right)^'",
+      	"\\frac{d}{dx}\\right)",
+      	"\\frac{\\partial}{\\partial x}\\right)",
+      	"\\int",
+      	"\\int_{X}^{Y}",
+      	"\\lim_{x\\to\\infty}\\right)",
+      	"\\sum_{n=0}^{\\infty}",
+      	"\\infty",
+      	"\\theta",
+      	"\\left(f\\circ\\g\\right)",
+      	"long\:division\:\frac{}{}",
+      	"long\\:multiplication\\:",
+      	"long\\:addition\\:",
+      	"long\\:subtraction\\:",
+      	"\\left(",
+      	"\\right)",
+      	"\\times",
+      	"\\frac",
+        "\\alpha",
+        "\\Gamma",
+        "\\gamma",
+        "\\Delta",
+        "\\delta",
+        "\\Epsilon",
+        "\\epsilon",
+        "\\varepsilon",
+        "\\Zeta",
+        "\\zeta",
+        "\\Eta",
+        "\\eta",
+        "\\Theta",
+        "\\vartheta",
+        "\\Iota",
+        "\\iota",
+        "\\Kappa",
+        "\\kappa",
+        "\\varkappa",
+        "\\Lambda",
+        "\\lambda",
+        "\\Mu",
+        "\\mu",
+        "\\Pi",
+        "\\rho",
+        "\\Sigma",
+        "\\Upsilon",
+        "\\upsilon",
+        "\\Omega",
+        "\\leqslant",
+        "\\nleq",
+        "\\Uparrow",
+        "\\uparrow",
+        "\\Downarrow",
+        "\\downarrow",
+        "\\vert",
+        "\\langle",
+        "\\lfloor",
+        "\\rfloor",
+        "\\lceil",
+        "\\rceil",
+        "\\sum",
+        "\\prod",
+        "\\coprod",
+        "\\oint",
+        "\\int\\int",
+        "\\bigcap",
+        "\\bigcup",
+        "\\bigoplus",
+        "\\bigotimes",
+        "\\bigodot",
+        "\\bigwedge",
+        "\\bigsqcup",
+        "\\arccos",
+        "\\cos",
+        "\\csc",
+        "\\exp",
+        "\\ker",
+        "\\limsup",
+        "\\min",
+        "\\sinh",
+        "\\arcsin",
+        "\\cosh",
+        "\\deg",
+        "\\gcd",
+        "\\lg",
+        "\\ln",
+        "\\Pr",
+        "\\sup",
+        "\\arctan",
+        "\\cot",
+        "\\det",
+        "\\hom",
+        "\\lim",
+        "\\log",
+        "\\sec",
+        "\\tan",
+        "\\arg",
+        "\\coth",
+        "\\dim",
+        "\\inf",
+        "\\liminf",
+        "\\max",
+        "\\sin",
+        "\\tanh",
+        "\\ast",
+        "\\star",
+        "\\pm",
+        "\\mp",
+        "\\equiv",
+        "\\cong",
+        "\\neq",
+        "\\sim",
+        "\\simeq",
+        "\\approx",
+        "\\asymp",
+        "\\doteq",
+        "\\ll",
+        "\\subset",
+        "\\subseteq",
+        "\\in",
+        "\\gg",
+        "\\supset",
+        "\\supseteq",
+        "\\parallel",
+        "\\approxeq",
+        "\\thicksim",
+        "\\backsim",
+        "\\backsimeq",
+        "\\therefore",
+        "\\because",
+        "\\neq",
+        "\\cdots",
+      	];
+      let currentMenu = 'menuDetail';
+      let counter = 0;
+      for (let key in mathButtons) {
+        if (mathButtons.hasOwnProperty(key)) {
+          let curr = mathButtons[key];
+          let newButton = '<li class="symbol-btn list-inline-item" data-append="'+ curr +'">' +
+                  '<span class="mathquill-embedded-latex mathquill-rendered-math">' +
+                    '<var>' + curr + '</var>' +
+                  '</span></li>';
+          if (key%36 === 0 ) {
+            counter++;
+          }
+          jQuery('#menuDetail' + counter + ' ul').append(newButton);
+        }
+      }
+
+      jQuery(document).ready(function() {
+        var latexMath = $('#editable-math').bind('keydown keypress', function () {
+          setTimeout(function () {
+            var latex = latexMath.mathquill('latex');
+          })
+        })
+        /**
+        * Add a new symbol to editor
+        **/
+        jQuery('.symbol-btn').bind('click', function () {
+          let value = jQuery(this).attr('data-append');
+          latexMath.mathquill("write", value).focus();
+        });
+
+        function printTree(html) {
+          html = html.match(/<[a-z]+|<\/[a-z]+>|./ig);
+          if (!html) return '';
+          var indent = '\n', tree = '';
+          while (html.length) {
+            var token = html.shift();
+            if (token.charAt(0) === '<') {
+              if (token.charAt(1) === '/') {
+                indent = indent.slice(0, -2);
+                if (html[0] && html[0].slice(0, 2) === '</')
+                  token += indent.slice(0, -2);
+              }
+              else {
+                tree += indent;
+                indent += '  ';
+              }
+              token = token.toLowerCase();
+            }
+
+            tree += token;
+          }
+          return tree.slice(1);
+        }
+      })
+    </script>
+  </body>
+</html>
